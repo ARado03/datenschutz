@@ -154,102 +154,23 @@
 <p> Im Jahr 2024, nach einem verheerenden Hackerangriff, der das digitale Vertrauen weltweit erschütterte, wurde eine neue Institution errichtet: das <strong>Datenschutzgefängnis</strong>. Die digitale Infrastruktur war massiv angegriffen worden, unzählige sensible Daten wurden offen und ungeschützt verbreitet. IT-Systeme von Schulen, Unternehmen und Behörden zeigten erschreckende Sicherheitslücken, während grundlegende Datenschutzmaßnahmen vielfach ignoriert oder falsch umgesetzt wurden. <br><br> Das Gefängnis wurde in einer abgelegenen, winterlichen Region errichtet – die genaue Lage blieb umstritten. Einige Berichte sprechen von einem versteckten Tal in den Alpen, andere von einer isolierten Station in der Antarktis. Diese Isolation diente sowohl als Sicherheitsmaßnahme als auch als Symbol für die strengen Konsequenzen von Datenschutzverstößen. <br><br> Initiatoren des Projekts waren <strong>Diplom-Ingenieur und Professor Philip Petzl</strong>, Hauptlehrer der 1BHBG im Fach <strong>Medizin- und Gesundheitsinformatik (MGIN)</strong>, zusammen mit einem Experten für <strong>Fachspezifische Softwaretechnik (FSST)</strong>. Sie hatten die Aufgabe, eine Reaktion auf die immer gravierenderen Verstöße gegen den Datenschutz zu schaffen und für klare Konsequenzen zu sorgen. <br><br> Der unmittelbare Auslöser war ein folgenschwerer Hackerangriff, verursacht durch eine Verkettung vermeidbarer Fehler: <ul> <li>Ein Schüler versendete unverschlüsselte PDF-Dateien mit sensiblen personenbezogenen Daten, was einen direkten Verstoß gegen <strong>Artikel 5 Absatz 1 Buchstabe f DSGVO</strong> darstellt. Dort ist festgelegt, dass personenbezogene Daten „in einer Weise verarbeitet werden müssen, die eine angemessene Sicherheit gewährleistet, einschließlich Schutz vor unbefugter oder unrechtmäßiger Verarbeitung sowie vor unbeabsichtigtem Verlust, Zerstörung oder Schädigung“.</li> <li>Essenzielle Programmdateien wurden versehentlich als <code>.txt</code> statt als <code>.c</code> eingereicht, wodurch Sicherheitsmechanismen nicht mehr richtig funktionierten und Schwachstellen entstanden.</li> <li>Die Programmierumgebung Eclipse wurde falsch konfiguriert und eingesetzt, was ebenfalls zu einer Schwächung der Datensicherheit führte.</li> </ul> Diese Fehler summierten sich und führten zu einer massiven Sicherheitslücke, die Hacker ausnutzten. Nach <strong>Artikel 33 DSGVO</strong> ist bei einer Datenschutzverletzung eine unverzügliche Meldung an die zuständige Aufsichtsbehörde erforderlich, spätestens jedoch innerhalb von 72 Stunden. Diese Meldefrist wurde in diesem Fall nicht eingehalten, was den Schaden zusätzlich vergrößerte. <br><br> Als Antwort auf diese Krise wurde das Datenschutzgefängnis errichtet – eine Einrichtung für jene, die gegen <strong>Artikel 32 DSGVO (Sicherheit der Verarbeitung)</strong> und <strong>Artikel 83 DSGVO (Sanktionen)</strong> verstoßen hatten. Dort wurden Personen inhaftiert, die durch Fahrlässigkeit oder bewusste Missachtung der Datenschutzvorschriften eine erhebliche Gefahr für die Informationssicherheit darstellten. <br><br> Die Haftbedingungen waren streng und die Sicherheit der dort verwahrten Daten oberstes Gebot. Interessanterweise gibt es widersprüchliche Berichte über das Leben in der Einrichtung: Einige sprechen von strikten Isolationsmaßnahmen, andere von sogenannten „Kafetschypausen“ – kurzen Erholungsphasen, in denen den Insassen Kaffee und Ruhe gewährt wurden, um ihre geistige Leistungsfähigkeit zu erhalten. <br><br> Ungeachtet dieser Details war die Botschaft klar: Datenschutz ist kein bloßes Formalitätsritual, sondern ein bindendes Gesetz mit ernsthaften Konsequenzen. Fehler in der Handhabung personenbezogener Daten sind nicht nur technische Pannen, sondern Vergehen, die weitreichende Folgen für die Sicherheit und das Vertrauen der Gesellschaft haben können. <br><br> Heute steht das Datenschutzgefängnis als Mahnmal einer Zeit, in der die Digitalisierung ohne ausreichende Sicherheitsvorkehrungen vorangetrieben wurde. Es symbolisiert die Verantwortung, die jeder Mensch, jede Organisation und Institution im Umgang mit sensiblen Daten trägt, und warnt vor den Folgen von Nachlässigkeit und Ignoranz. <br><br> </p>
         </section>
 
-<section id="statistik" class="content">
-    <h2>Personalstatistik</h2>
+        <section id="statistik" class="content">
+            <h2>Statistiken</h2>
+            <table border="1" cellpadding="5">
+                <tr><th>Kategorie</th><th>Anzahl</th></tr>
+                <tr><td>Insassen</td><td>31</td></tr>
+                <tr><td>Rehabilitierte</td><td>5</td></tr>
+                <tr><td>Ausbrüche</td><td>7</td></tr>
+                <tr><td>Wärter</td><td>3</td></tr>
+                <tr><td>Hilfswärter</td><td>6</td></tr>
+                <tr><td>IT-Service-Mitarbeiter</td><td>2</td></tr>
+                <tr><td>Direktionsmitglieder</td><td>2</td></tr>
+            </table>
+        </section>
 
-    <canvas id="personalDiagramm" width="600" height="300"></canvas>
-</section>
-
-<script>
-    const personalCtx = document.getElementById('personalDiagramm').getContext('2d');
-    const personalChart = new Chart(personalCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Direktion', 'IT-Service', 'Wärter', 'Hilfswärter'],
-            datasets: [
-                {
-                    label: 'Anzahl Personen',
-                    data: [2, 2, 3, 6],
-                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Durchschnittsgehalt (€)',
-                    data: [6500, 4200, 3800, 3000],
-                    backgroundColor: 'rgba(255, 206, 86, 0.7)',
-                    borderColor: 'rgba(255, 206, 86, 1)',
-                    borderWidth: 1,
-                    type: 'line',
-                    yAxisID: 'y2'
-                },
-                {
-                    label: 'Urlaubstage/Jahr',
-                    data: [30, 28, 26, 24],
-                    backgroundColor: 'rgba(75, 192, 192, 0.7)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            responsive: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Anzahl / Urlaubstage'
-                    }
-                },
-                y2: {
-                    position: 'right',
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Durchschnittsgehalt (€)'
-                    },
-                    grid: {
-                        drawOnChartArea: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    position: 'top',
-                    onClick: (e, legendItem, legend) => {
-                        const index = legendItem.datasetIndex;
-                        const ci = legend.chart;
-                        const meta = ci.getDatasetMeta(index);
-                        meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
-                        ci.update();
-                    }
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false
-                }
-            }
-        }
-    });
-</script>
-
-
-
-<section id="bewertungen" class="content">
-    <h2>Bewertungen</h2>
-    <div id="bewertungsAnzeige">
-        <p>Bitte melde dich als Admin an, um Bewertungen zu sehen.</p>
-    </div>
-
-    <h3>Neue Bewertung abgeben:</h3>
-    <form id="bewertungForm">
-        <textarea id="bewertungText" rows="4" cols="50" placeholder="Deine Bewertung hier..."></textarea><br>
-        <button type="submit" type="button">Bewertung absenden</button>
-    </form>
-</section>
-
-
+        <section id="bewertungen" class="content">
+            <h2>Bewertungen</h2>
+            <p>Nur sichtbar nach Admin-Login.</p>
         </section>
 
         <section id="admin" class="content">
@@ -263,24 +184,8 @@
             </form>
             <div id="adminPanel" style="display:none;">
                 <h3>Willkommen, <span id="loggedInUser"></span></h3>
-                <div id="adminPanel" style="display:none;">
-    <h3>Willkommen, <span id="loggedInUser"></span></h3>
-    <div id="adminPanel" style="display:none;">
-    <p>Hier können Sie Bewertungen verwalten und neue Benutzer hinzufügen.</p>
-    
-    <h4>Bewertungen (nur für Admins):</h4>
-    <div id="adminBewertungen">
-        <p>Keine Bewertungen vorhanden.</p>
-    </div>
-</div>
-
-    
-    <h4>Bewertungen (nur für Admins):</h4>
-    <div id="adminBewertungen">
-        <p>Keine Bewertungen vorhanden.</p>
-    </div>
-</div>
-
+                <p>Hier können Sie Bewertungen verwalten und neue Benutzer hinzufügen.</p>
+                <!-- Admin-Optionen kommen hier später -->
             </div>
         </section>
     </main>
@@ -323,35 +228,6 @@
                 alert("Login fehlgeschlagen!");
             }
         });
-        // Bewertungen speichern
-let bewertungen = [];
-
-document.getElementById("bewertungForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const text = document.getElementById("bewertungText").value;
-    bewertungen.push(text);
-    document.getElementById("bewertungText").value = "";
-    alert("Danke für deine Bewertung!");
-});
-
-// Admin-Bewertungen anzeigen beim Login
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const u = document.getElementById("username").value;
-    const p = document.getElementById("password").value;
-    const found = users.find(user => user.username === u && user.password === p);
-    if (found) {
-        document.getElementById("adminPanel").style.display = "block";
-        document.getElementById("loggedInUser").innerText = found.username + " (" + found.role + ")";
-        switchTab("admin");
-        // Bewertungen für Admin anzeigen
-        document.getElementById("bewertungen").innerHTML = `<h2>Bewertungen</h2>` +
-            bewertungen.map(b => `<p>${b}</p>`).join("");
-    } else {
-        alert("Login fehlgeschlagen!");
-    }
-});
-
     </script>
 </body>
 
