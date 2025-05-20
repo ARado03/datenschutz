@@ -294,26 +294,127 @@
         }
 
         // ===================== Login Logik (realistisch simuliert) =====================
-        const users = [
-            { username: "Charly", password: "007", role: "Direktion" },
-            { username: "PPetzl", password: "Passwort01.!", role: "Direktion" },
-            { username: "Aleks", password: "BRW-144", role: "IT-Service" },
-            { username: "Test", password: "Test123", role: "Wärter" }
-        ];
+const users = [
+    { username: "Charly", password: "007", role: "Direktion" },
+    { username: "PPetzl", password: "Passwort01.!", role: "Direktion" },
+    { username: "Aleks", password: "BRW-144", role: "IT-Service" },
+    { username: "Test", password: "Test123", role: "Wärter" }
+];
 
-        document.getElementById("loginForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-            const u = document.getElementById("username").value;
-            const p = document.getElementById("password").value;
-            const found = users.find(user => user.username === u && user.password === p);
-            if (found) {
-                document.getElementById("adminPanel").style.display = "block";
-                document.getElementById("loggedInUser").innerText = found.username + " (" + found.role + ")";
-                switchTab("admin");
-                document.getElementById("bewertungen").innerHTML = `<h2>Bewertungen</h2><div>Hier erscheinen Bewertungen...</div>`;
-            } else {
-                alert("Login fehlgeschlagen!");
+// Standarddaten oder aus localStorage laden
+let personalStats = JSON.parse(localStorage.getItem("personalStats")) || {
+    "Wärter": { arbeitsstunden: 40, pausen: 5, fehlstunden: 0, lohn: 800 },
+    "Hilfswärter": { arbeitsstunden: 35, pausen: 4, fehlstunden: 2, lohn: 650 },
+    "IT-Service": { arbeitsstunden: 38, pausen: 3, fehlstunden: 1, lohn: 900 },
+    "Direktion": { arbeitsstunden: 45, pausen: 5, fehlstunden: 0, lohn: 1500 }
+};
+
+// Login Logik
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const u = document.getElementById("username").value;
+    const p = document.getElementById("password").value;
+    const found = users.find(user => user.username === u && user.password === p);
+    if (found) {
+        document.getElementById("adminPanel").style.display = "block";
+        document.getElementById("loggedInUser").innerText = found.username + " (" + found.role + ")";
+        updateStatsTable();
+        updateChart();
+    } else {
+        alert("Login fehlgeschlagen!");
+    }
+});
+
+// Tabelle aktualisieren
+function updateStatsTable() {
+    const table = `
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Personal</th>
+                <th>Arbeitsstunden (Woche)</th>
+                <th>Pausen (h)</th>
+                <th>Fehlstunden</th>
+                <th>Lohn (€ / Woche)</th>
+            </tr>
+            ${Object.entries(personalStats).map(([key, val]) => `
+                <tr>
+                    <td>${key}</td>
+                    <td>${val.arbeitsstunden}</td>
+                    <td>${val.pausen}</td>
+                    <td>${val.fehlstunden}</td>
+                    <td>${val.lohn}</td>
+                </tr>
+            `).join("")}
+        </table>
+    `;
+    document.getElementById("personalTableContainer").innerHTML = table;
+}
+
+// Diagramm initialisieren
+const ctx = document.getElementById("personalChart").getContext("2d");
+let personalChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: Object.keys(personalStats),
+        datasets: [
+            {
+                label: 'Arbeitsstunden',
+                data: Object.values(personalStats).map(e => e.arbeitsstunden),
+                backgroundColor: 'rgba(54, 162, 235, 0.7)'
+            },
+            {
+                label: 'Pausen (h)',
+                data: Object.values(personalStats).map(e => e.pausen),
+                backgroundColor: 'rgba(255, 206, 86, 0.7)'
+            },
+            {
+                label: 'Fehlstunden',
+                data: Object.values(personalStats).map(e => e.fehlstunden),
+                backgroundColor: 'rgba(255, 99, 132, 0.7)'
+            },
+            {
+                label: 'Lohn (€ / Woche)',
+                data: Object.values(personalStats).map(e => e.lohn),
+                backgroundColor: 'rgba(75, 192, 192, 0.7)'
             }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: { y: { beginAtZero: true } }
+    }
+});
+
+// Diagramm aktualisieren
+function updateChart() {
+    personalChart.data.labels = Object.keys(personalStats);
+    personalChart.data.datasets[0].data = Object.values(personalStats).map(e => e.arbeitsstunden);
+    personalChart.data.datasets[1].data = Object.values(personalStats).map(e => e.pausen);
+    personalChart.data.datasets[2].data = Object.values(personalStats).map(e => e.fehlstunden);
+    personalChart.data.datasets[3].data = Object.values(personalStats).map(e => e.lohn);
+    personalChart.update();
+}
+
+// Formular Speichern
+document.getElementById("updateStatsForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const type = document.getElementById("personalType").value;
+    personalStats[type] = {
+        arbeitsstunden: parseInt(document.getElementById("arbeitsstunden").value),
+        pausen: parseInt(document.getElementById("pausen").value),
+        fehlstunden: parseInt(document.getElementById("fehlstunden").value),
+        lohn: parseInt(document.getElementById("lohn").value)
+    };
+    localStorage.setItem("personalStats", JSON.stringify(personalStats));
+    updateStatsTable();
+    updateChart();
+});
+
+// Tabelle und Diagramm beim Start laden
+window.onload = () => {
+    updateStatsTable();
+    updateChart();
+};
         });
     </script>
 </body>
