@@ -199,17 +199,19 @@
 
         </section>
 
-        <section id="bewertungen" class="content">
-            <h2>Bewertungen</h2>
-            <section id="bewertungen" class="content">
+<section id="bewertungen" class="content">
     <h2>Bewertungen</h2>
+    <div id="bewertungsAnzeige">
+        <p>Bitte melde dich als Admin an, um Bewertungen zu sehen.</p>
+    </div>
+
+    <h3>Neue Bewertung abgeben:</h3>
     <form id="bewertungForm">
-        <label for="bewertungText">Deine Bewertung:</label><br>
-        <textarea id="bewertungText" required></textarea><br>
-        <button type="submit">Bewertung absenden</button>
+        <textarea id="bewertungText" rows="4" cols="50" placeholder="Deine Bewertung hier..."></textarea><br>
+        <button type="submit" type="button">Bewertung absenden</button>
     </form>
-    <div id="bewertungsAnzeige"></div>
 </section>
+
 
         </section>
 
@@ -224,8 +226,24 @@
             </form>
             <div id="adminPanel" style="display:none;">
                 <h3>Willkommen, <span id="loggedInUser"></span></h3>
-                <p>Hier können Sie Bewertungen verwalten und neue Benutzer hinzufügen.</p>
-                <!-- Admin-Optionen kommen hier später -->
+                <div id="adminPanel" style="display:none;">
+    <h3>Willkommen, <span id="loggedInUser"></span></h3>
+    <div id="adminPanel" style="display:none;">
+    <p>Hier können Sie Bewertungen verwalten und neue Benutzer hinzufügen.</p>
+    
+    <h4>Bewertungen (nur für Admins):</h4>
+    <div id="adminBewertungen">
+        <p>Keine Bewertungen vorhanden.</p>
+    </div>
+</div>
+
+    
+    <h4>Bewertungen (nur für Admins):</h4>
+    <div id="adminBewertungen">
+        <p>Keine Bewertungen vorhanden.</p>
+    </div>
+</div>
+
             </div>
         </section>
     </main>
