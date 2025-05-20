@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutzgefängnis</title>
+    <style>
+        /* ===================== Globales Styling ===================== */
+        :root {
+            --bg-light: #f9f9f9;
+            --bg-dark: #1e1e2f;
+            --text-light: #1e1e2f;
+            --text-dark: #f9f9f9;
+            --primary-color: #002855;
+            --secondary-color: #cccccc;
+            --highlight: #005f73;
+            --transition-speed: 0.4s;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        header, footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            transition: background-color var(--transition-speed);
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        nav button:hover {
+            color: var(--highlight);
+        }
+
+        .content {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn var(--transition-speed);
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .image-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image-container img {
+            max-width: 300px;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .dark-mode nav {
+            background-color: #444;
+        }
+
+        .dark-mode nav button {
+            color: #eee;
+        }
+
+        .logo {
+            max-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://th.bing.com/th/id/OIP.5UgSQi7kFzrxkFa1nHVDfQAAAA?w=168&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Logo" class="logo">
+        <h1>Datenschutzgefängnis</h1>
+        <button onclick="toggleDarkMode()">🌓 Modus/Ansicht wechseln</button>
+    </header>
+
+    <nav>
+        <button onclick="switchTab('home')">Home</button>
+        <button onclick="switchTab('informationen')">Informationen</button>
+        <button onclick="switchTab('geschichte')">Geschichte</button>
+        <button onclick="switchTab('statistik')">Statistik</button>
+        <button onclick="switchTab('bewertungen')">Bewertungen</button>
+        <button onclick="switchTab('admin')">Admin</button>
+    </nav>
+
+    <main>
+        <section id="home" class="content active">
+            <h2>Willkommen im Datenschutzgefängnis!</h2>
+            <p>Gefängnisdirektion: Hr. Prof. Brenner und Hr. Prof. Petzl</p>
+            <p>Impressum: Das Datenschutzgefängnis befindet sich in der Wexstraße 19-23, H834 und teils in der VA. Außerdem sind die Öffnungszeiten einzuhalten!</p>
+        </section>
+
+        <section id="informationen" class="content">
+            <h2>Allgemeine Informationen</h2>
+            <p>Öffnungszeiten:</p>
+            <ul>
+                <li>Montag: 13:20 - 17:00</li>
+                <li>Mittwoch: 11:30 - 17:00</li>
+                <li>Freitag: 8:00 - 11:30</li>
+            </ul>
+
+            <h2>Wichtige Links</h2>
+<p><a href="https://www.intertechno.at/">Hauptpartner - InterTechno</a></p>
+<p><a href="https://www.usp.gv.at/themen/betrieb-und-umwelt/laufender-betrieb/datenschutz.html">Datenschutz-Grundverordnung (DSGVO) & Datenschutzgesetze BRÖ</a></p>
+            <p>Eintritt: 50 Euro pro Tag. Familien erhalten 25% Rabatt ab 2 Kindern.</p>
+            <div class="image-container">
+                <img src="https://img.luzernerzeitung.ch/2020/9/30/cfc9856d-bf08-4f67-9d2c-c5cb5891ee72.jpeg?width=1692&height=720&fit=bounds&quality=75&auto=webp&crop=2397" alt="Gefängnis Außen">
+                <img src="https://th.bing.com/th/id/OIP.D8iVrxofaghEnsqcXzijkgHaEK?w=299&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Gefängnis Innen">
+                <img src="https://th.bing.com/th/id/R.098955ae443e28b99990e0ccee96a1d2?rik=5B12gKyDiBHDkA&pid=ImgRaw&r=0" alt="Hörsaal">
+            </div>
+        </section>
+
+        <section id="geschichte" class="content">
+            <h2>Geschichte des Datenschutzgefängnisses</h2>
+<p> Im Jahr 2024, nach einem verheerenden Hackerangriff, der das digitale Vertrauen weltweit erschütterte, wurde eine neue Institution errichtet: das <strong>Datenschutzgefängnis</strong>. Die digitale Infrastruktur war massiv angegriffen worden, unzählige sensible Daten wurden offen und ungeschützt verbreitet. IT-Systeme von Schulen, Unternehmen und Behörden zeigten erschreckende Sicherheitslücken, während grundlegende Datenschutzmaßnahmen vielfach ignoriert oder falsch umgesetzt wurden. <br><br> Das Gefängnis wurde in einer abgelegenen, winterlichen Region errichtet – die genaue Lage blieb umstritten. Einige Berichte sprechen von einem versteckten Tal in den Alpen, andere von einer isolierten Station in der Antarktis. Diese Isolation diente sowohl als Sicherheitsmaßnahme als auch als Symbol für die strengen Konsequenzen von Datenschutzverstößen. <br><br> Initiatoren des Projekts waren <strong>Diplom-Ingenieur und Professor Philip Petzl</strong>, Hauptlehrer der 1BHBG im Fach <strong>Medizin- und Gesundheitsinformatik (MGIN)</strong>, zusammen mit einem Experten für <strong>Fachspezifische Softwaretechnik (FSST)</strong>. Sie hatten die Aufgabe, eine Reaktion auf die immer gravierenderen Verstöße gegen den Datenschutz zu schaffen und für klare Konsequenzen zu sorgen. <br><br> Der unmittelbare Auslöser war ein folgenschwerer Hackerangriff, verursacht durch eine Verkettung vermeidbarer Fehler: <ul> <li>Ein Schüler versendete unverschlüsselte PDF-Dateien mit sensiblen personenbezogenen Daten, was einen direkten Verstoß gegen <strong>Artikel 5 Absatz 1 Buchstabe f DSGVO</strong> darstellt. Dort ist festgelegt, dass personenbezogene Daten „in einer Weise verarbeitet werden müssen, die eine angemessene Sicherheit gewährleistet, einschließlich Schutz vor unbefugter oder unrechtmäßiger Verarbeitung sowie vor unbeabsichtigtem Verlust, Zerstörung oder Schädigung“.</li> <li>Essenzielle Programmdateien wurden versehentlich als <code>.txt</code> statt als <code>.c</code> eingereicht, wodurch Sicherheitsmechanismen nicht mehr richtig funktionierten und Schwachstellen entstanden.</li> <li>Die Programmierumgebung Eclipse wurde falsch konfiguriert und eingesetzt, was ebenfalls zu einer Schwächung der Datensicherheit führte.</li> </ul> Diese Fehler summierten sich und führten zu einer massiven Sicherheitslücke, die Hacker ausnutzten. Nach <strong>Artikel 33 DSGVO</strong> ist bei einer Datenschutzverletzung eine unverzügliche Meldung an die zuständige Aufsichtsbehörde erforderlich, spätestens jedoch innerhalb von 72 Stunden. Diese Meldefrist wurde in diesem Fall nicht eingehalten, was den Schaden zusätzlich vergrößerte. <br><br> Als Antwort auf diese Krise wurde das Datenschutzgefängnis errichtet – eine Einrichtung für jene, die gegen <strong>Artikel 32 DSGVO (Sicherheit der Verarbeitung)</strong> und <strong>Artikel 83 DSGVO (Sanktionen)</strong> verstoßen hatten. Dort wurden Personen inhaftiert, die durch Fahrlässigkeit oder bewusste Missachtung der Datenschutzvorschriften eine erhebliche Gefahr für die Informationssicherheit darstellten. <br><br> Die Haftbedingungen waren streng und die Sicherheit der dort verwahrten Daten oberstes Gebot. Interessanterweise gibt es widersprüchliche Berichte über das Leben in der Einrichtung: Einige sprechen von strikten Isolationsmaßnahmen, andere von sogenannten „Kafetschypausen“ – kurzen Erholungsphasen, in denen den Insassen Kaffee und Ruhe gewährt wurden, um ihre geistige Leistungsfähigkeit zu erhalten. <br><br> Ungeachtet dieser Details war die Botschaft klar: Datenschutz ist kein bloßes Formalitätsritual, sondern ein bindendes Gesetz mit ernsthaften Konsequenzen. Fehler in der Handhabung personenbezogener Daten sind nicht nur technische Pannen, sondern Vergehen, die weitreichende Folgen für die Sicherheit und das Vertrauen der Gesellschaft haben können. <br><br> Heute steht das Datenschutzgefängnis als Mahnmal einer Zeit, in der die Digitalisierung ohne ausreichende Sicherheitsvorkehrungen vorangetrieben wurde. Es symbolisiert die Verantwortung, die jeder Mensch, jede Organisation und Institution im Umgang mit sensiblen Daten trägt, und warnt vor den Folgen von Nachlässigkeit und Ignoranz. <br><br> </p>
+        </section>
+
+        <section id="statistik" class="content">
+            <h2>Statistiken</h2>
+            <table border="1" cellpadding="5">
+                <tr><th>Kategorie</th><th>Anzahl</th></tr>
+                <tr><td>Insassen</td><td>31</td></tr>
+                <tr><td>Rehabilitierte</td><td>5</td></tr>
+                <tr><td>Ausbrüche</td><td>7</td></tr>
+                <tr><td>Wärter</td><td>3</td></tr>
+                <tr><td>Hilfswärter</td><td>6</td></tr>
+                <tr><td>IT-Service-Mitarbeiter</td><td>2</td></tr>
+                <tr><td>Direktionsmitglieder</td><td>2</td></tr>
+            </table>
+        </section>
+
+        <section id="bewertungen" class="content">
+            <h2>Bewertungen</h2>
+            <p>Nur sichtbar nach Admin-Login.</p>
+        </section>
+
+        <section id="admin" class="content">
+            <h2>Adminbereich</h2>
+            <form id="loginForm">
+                <label for="username">Benutzername:</label>
+                <input type="text" id="username" required><br>
+                <label for="password">Passwort:</label>
+                <input type="password" id="password" required><br>
+                <button type="submit">Login</button>
+            </form>
+            <div id="adminPanel" style="display:none;">
+                <h3>Willkommen, <span id="loggedInUser"></span></h3>
+                <p>Hier können Sie Bewertungen verwalten und neue Benutzer hinzufügen.</p>
+                <!-- Admin-Optionen kommen hier später -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Datenschutzgefängnis</p>
+    </footer>
+
+    <script>
+        // ===================== Tab Navigation =====================
+        function switchTab(tabId) {
+            document.querySelectorAll('.content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // ===================== Dark-/Light-Modus =====================
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        // ===================== Login Logik (realistisch simuliert) =====================
+        const users = [
+            { username: "Charly", password: "007", role: "Direktion" },
+            { username: "Aleks", password: "BRW-144", role: "IT-Service" },
+            { username: "Test", password: "Test123", role: "Wärter" }
+        ];
+
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const u = document.getElementById("username").value;
+            const p = document.getElementById("password").value;
+            const found = users.find(user => user.username === u && user.password === p);
+            if (found) {
+                document.getElementById("adminPanel").style.display = "block";
+                document.getElementById("loggedInUser").innerText = found.username + " (" + found.role + ")";
+                switchTab("admin");
+                document.getElementById("bewertungen").innerHTML = `<h2>Bewertungen</h2><div>Hier erscheinen Bewertungen...</div>`;
+            } else {
+                alert("Login fehlgeschlagen!");
+            }
+        });
+    </script>
+</body>
+
+</html>
