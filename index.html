@@ -128,6 +128,19 @@
             <p>Gefängnisdirektion: Hr. Prof. Brenner und Hr. Prof. Petzl</p>
             <p>Impressum: Das Datenschutzgefängnis befindet sich in der Wexstraße 19-23, H834 und teils in der VA. Außerdem sind die Öffnungszeiten einzuhalten!</p>
             <p2>Diese Website dient ausschließlich der Unterhaltung. Die meisten Informationen sind fiktiv. SATIRE.</p2>
+
+            <!-- ...existing code... -->
+<form id="complaintForm">
+    <h3>Beschwerde zum Datenschutz einreichen</h3>
+    <label for="complaintName">Ihr Name (optional):</label><br>
+    <input type="text" id="complaintName" name="complaintName"><br>
+    <label for="complaintText">Beschwerde:</label><br>
+    <textarea id="complaintText" name="complaintText" rows="4" required></textarea><br>
+    <button type="submit">Absenden</button>
+</form>
+<p id="complaintSuccess" style="color:green; display:none;">Beschwerde wurde eingereicht!</p>
+<!-- ...existing code... -->
+
         </section>
 
         <section id="informationen" class="content">
@@ -240,6 +253,13 @@
                 <p>Hier können Sie Bewertungen verwalten und neue Benutzer hinzufügen.</p>
                 <!-- Admin-Optionen kommen hier später -->
             </div>
+
+            <!-- ...existing code... -->
+<hr>
+<h3>Eingereichte Datenschutz-Beschwerden</h3>
+<ul id="complaintList"></ul>
+<!-- ...existing code... -->
+
         </section>
 
     </main>
@@ -385,6 +405,47 @@
     function toggleDarkMode() {
         document.body.classList.toggle("dark-mode");
     }
+
+    // ...existing code...
+
+// Beschwerden speichern und anzeigen
+function loadComplaints() {
+    return JSON.parse(localStorage.getItem("complaints") || "[]");
+}
+function saveComplaints(complaints) {
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+}
+function showComplaints() {
+    const complaints = loadComplaints();
+    const list = document.getElementById("complaintList");
+    if (!list) return;
+    list.innerHTML = complaints.length === 0
+        ? "<li>Keine Beschwerden eingereicht.</li>"
+        : complaints.map(c =>
+            `<li><strong>${c.name ? c.name : "Anonym"}:</strong> ${c.text}</li>`
+        ).join("");
+}
+
+// Formular absenden
+document.getElementById("complaintForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("complaintName").value.trim();
+    const text = document.getElementById("complaintText").value.trim();
+    if (!text) return;
+    const complaints = loadComplaints();
+    complaints.push({ name, text });
+    saveComplaints(complaints);
+    document.getElementById("complaintForm").reset();
+    document.getElementById("complaintSuccess").style.display = "block";
+    setTimeout(() => document.getElementById("complaintSuccess").style.display = "none", 2000);
+});
+
+// Nach Admin-Login Beschwerden anzeigen
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    setTimeout(showComplaints, 100); // Nach Login anzeigen
+});
+
+// ...existing code...
 </script>
 
 </body>
