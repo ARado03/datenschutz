@@ -254,9 +254,10 @@
             </form>
 <!-- ...existing code... -->
 <div id="adminPanel" style="display:none;">
-    <h3>Willkommen, <span id="loggedInUser"></span></h3>
+ <h3>Willkommen, <span id="loggedInUser"></span></h3>
     <p>Hier können Sie Bewertungen verwalten und neue Benutzer hinzufügen.</p>
-    <!-- Admin-Optionen kommen hier später -->
+    <div id="personalTableContainer"></div>
+    <canvas id="personalChart" width="600" height="300"></canvas>
     <hr>
     <h3>Eingereichte Datenschutz-Beschwerden</h3>
     <ul id="complaintList"></ul>
@@ -264,10 +265,6 @@
 <!-- ...existing code... -->
 
             <!-- ...existing code... -->
-<hr>
-<h3>Eingereichte Datenschutz-Beschwerden</h3>
-<ul id="complaintList"></ul>
-<!-- ...existing code... -->
 
         </section>
 
@@ -444,7 +441,7 @@ function switchTab(tabId) {
     const target = document.getElementById(tabId);
     if (target) {
         target.classList.add('active');
-        // Beschwerden anzeigen, wenn Admin-Tab gewählt und eingeloggt
+        // Beschwerden anzeigen, wenn Admin-Tab gewählt und AdminPanel sichtbar ist
         if (tabId === "admin" && document.getElementById("adminPanel").style.display === "block") {
             showComplaints();
         }
