@@ -385,23 +385,6 @@
         updateChart();
     });
 
-    // Tabelle bei Start einmal laden
-    window.onload = () => {
-        updateStatsTable();
-        updateChart();
-    };
-        function switchTab(tabId) {
-        // Alle Inhalte ausblenden
-        const contents = document.querySelectorAll('.content');
-        contents.forEach(c => c.classList.remove('active'));
-
-        // Gewählten Tab anzeigen
-        const target = document.getElementById(tabId);
-        if (target) {
-            target.classList.add('active');
-        }
-    }
-
     function toggleDarkMode() {
         document.body.classList.toggle("dark-mode");
     }
