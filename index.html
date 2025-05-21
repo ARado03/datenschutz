@@ -3,6 +3,10 @@
 
 <head>
     
+    <!-- ...existing code... -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- ...existing code... -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datenschutzgefängnis</title>
@@ -248,11 +252,16 @@
                 <input type="password" id="password" required><br>
                 <button type="submit">Login</button>
             </form>
-            <div id="adminPanel" style="display:none;">
-                <h3>Willkommen, <span id="loggedInUser"></span></h3>
-                <p>Hier können Sie Bewertungen verwalten und neue Benutzer hinzufügen.</p>
-                <!-- Admin-Optionen kommen hier später -->
-            </div>
+<!-- ...existing code... -->
+<div id="adminPanel" style="display:none;">
+    <h3>Willkommen, <span id="loggedInUser"></span></h3>
+    <p>Hier können Sie Bewertungen verwalten und neue Benutzer hinzufügen.</p>
+    <!-- Admin-Optionen kommen hier später -->
+    <hr>
+    <h3>Eingereichte Datenschutz-Beschwerden</h3>
+    <ul id="complaintList"></ul>
+</div>
+<!-- ...existing code... -->
 
             <!-- ...existing code... -->
 <hr>
@@ -273,6 +282,7 @@
         { username: "Charly", password: "007", role: "Direktion" },
         { username: "PPetzl", password: "Passwort01.", role: "Direktion" },
         { username: "Aleks", password: "BRW-144", role: "IT-Service" },
+         { username: "Lena", password: "187", role: "Wärter" },
         { username: "Test", password: "Test123", role: "Wärter" }
     ];
 
@@ -385,22 +395,61 @@
         updateChart();
     });
 
-    // Tabelle bei Start einmal laden
-    window.onload = () => {
-        updateStatsTable();
-        updateChart();
-    };
-        function switchTab(tabId) {
-        // Alle Inhalte ausblenden
-        const contents = document.querySelectorAll('.content');
-        contents.forEach(c => c.classList.remove('active'));
+window.onload = () => {
+    updateStatsTable();
+    updateChart();
+    // Statistik-Diagramm initialisieren
+    if (document.getElementById('meinDiagramm')) {
+        const ctx = document.getElementById('meinDiagramm').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Insassen', 'Rehabilitierte', 'Ausbrüche', 'Wärter', 'Hilfswärter', 'IT-Service', 'Direktion'],
+                datasets: [{
+                    label: 'Anzahl',
+                    data: [31, 5, 7, 3, 6, 2, 2],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)',
+                        'rgba(99, 255, 132, 0.7)'
+                    ],
+                    borderColor: 'rgba(0,0,0,1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    }
+};
+function switchTab(tabId) {
+    // Alle Inhalte ausblenden
+    const contents = document.querySelectorAll('.content');
+    contents.forEach(c => c.classList.remove('active'));
 
-        // Gewählten Tab anzeigen
-        const target = document.getElementById(tabId);
-        if (target) {
-            target.classList.add('active');
+    // Gewählten Tab anzeigen
+    const target = document.getElementById(tabId);
+    if (target) {
+        target.classList.add('active');
+        // Beschwerden anzeigen, wenn Admin-Tab gewählt und eingeloggt
+        if (tabId === "admin" && document.getElementById("adminPanel").style.display === "block") {
+            showComplaints();
         }
     }
+}
 
     function toggleDarkMode() {
         document.body.classList.toggle("dark-mode");
